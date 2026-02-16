@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JCM POS</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="app-container">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    <span>JCM</span>
+                </div>
+
+                <a
+                    href="#dashboard"
+                    class="nav-item active"
+                    data-page="dashboard"
+                >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#sales" class="nav-item" data-page="sales">
+                    <i class="fas fa-cash-register"></i>
+                    <span>Point of Sale</span>
+                </a>
+                <a href="#products" class="nav-item" data-page="products">
+                    <i class="fas fa-box"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#deliveries" class="nav-item" data-page="deliveries">
+                    <i class="fas fa-truck"></i>
+                    <span>Deliveries</span>
+                </a>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- Dashboard Page -->
+                <section id="dashboard" class="page">
+                    <header class="page-header">
+                        <button class="mobile-menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Dashboard</h1>
+                        <p>Welcome back! Here's your store overview</p>
+                    </header>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>
+                                <i class="fas fa-peso-sign"></i> Today's Sales
+                            </h3>
+                            <p class="stat-value">₱0.00</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3><i class="fas fa-receipt"></i> Transactions</h3>
+                            <p class="stat-value">0</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>
+                                <i class="fas fa-calendar-alt"></i> Monthly
+                                Sales
+                            </h3>
+                            <p class="stat-value">₱0.00</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>
+                                <i class="fas fa-chart-line"></i> Yearly Sales
+                            </h3>
+                            <p class="stat-value">₱0.00</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>
+                                <i class="fas fa-exclamation-triangle"></i> Low
+                                Stock
+                            </h3>
+                            <p class="stat-value">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>
+                                <i class="fas fa-clock"></i> Pending Deliveries
+                            </h3>
+                            <p class="stat-value">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Grid -->
+                    <div class="dashboard-grid">
+                        <div class="dashboard-section">
+                            <h2>Recent Sales</h2>
+                            <div class="table-container">
+                                <table id="recent-sales-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Product Name</th>
+                                            <th>Qty</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                colspan="4"
+                                                style="
+                                                    text-align: center;
+                                                    color: var(
+                                                        --secondary-text
+                                                    );
+                                                    padding: 2rem;
+                                                "
+                                            >
+                                                No recent sales
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h2>Top Products</h2>
+                            <div class="table-container">
+                                <table id="top-products-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                colspan="3"
+                                                style="
+                                                    text-align: center;
+                                                    color: var(
+                                                        --secondary-text
+                                                    );
+                                                    padding: 2rem;
+                                                "
+                                            >
+                                                No products yet
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h2>Upcoming Deliveries</h2>
+                            <div class="table-container">
+                                <table id="upcoming-deliveries-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Supplier</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                colspan="3"
+                                                style="
+                                                    text-align: center;
+                                                    color: var(
+                                                        --secondary-text
+                                                    );
+                                                    padding: 2rem;
+                                                "
+                                            >
+                                                No pending deliveries
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h2>Low Stock Alerts</h2>
+                            <div class="table-container">
+                                <table id="low-stock-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td
+                                                colspan="2"
+                                                style="
+                                                    text-align: center;
+                                                    color: var(
+                                                        --secondary-text
+                                                    );
+                                                    padding: 2rem;
+                                                "
+                                            >
+                                                No low stock items
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Point of Sale Page -->
+                <section id="sales" class="page hidden">
+                    <header class="page-header">
+                        <button class="mobile-menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Point of Sale</h1>
+                        <p>Process sales transactions</p>
+                    </header>
+
+                    <div class="pos-container">
+                        <!-- Products Grid -->
+                        <div class="products-section">
+                            <h3>Products</h3>
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input
+                                    type="text"
+                                    class="search-input"
+                                    placeholder="Search products..."
+                                />
+                            </div>
+                            <div class="products-grid">
+                                <!-- Products will be added dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Cart -->
+                        <div class="cart-section">
+                            <h2>Cart</h2>
+                            <div class="cart-items">
+                                <p class="empty-cart">Cart is empty</p>
+                            </div>
+                            <div class="cart-summary">
+                                <div class="total">
+                                    <span>Total:</span>
+                                    <span>₱0.00</span>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-danger">Clear</button>
+                                    <button class="checkout-btn">
+                                        Checkout
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Page -->
+                <section id="products" class="page hidden">
+                    <header class="page-header">
+                        <button class="mobile-menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Products Management</h1>
+                        <p>Manage your inventory</p>
+                    </header>
+
+                    <div class="products-header">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input
+                                type="text"
+                                class="search-input"
+                                placeholder="Search products..."
+                            />
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Product
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>SKU</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Products will be added dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Add/Edit Product Modal -->
+                    <div class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Add Product</h3>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        step="0.01"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label>Stock Qty</label>
+                                    <input
+                                        type="number"
+                                        name="stock_quantity"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <input type="text" name="category" />
+                                </div>
+                                <div class="form-group">
+                                    <label>SKU</label>
+                                    <input type="text" name="sku" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Image URL (optional)</label>
+                                    <input
+                                        type="text"
+                                        name="image"
+                                        placeholder="https://example.com/image.jpg"
+                                    />
+                                </div>
+                                <div class="action-buttons">
+                                    <button type="button" class="btn-danger">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn-success">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Deliveries Page -->
+                <section id="deliveries" class="page hidden">
+                    <header class="page-header">
+                        <button class="mobile-menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1>Delivery Calendar</h1>
+                        <p>Manage your deliveries</p>
+                    </header>
+
+                    <div class="deliveries-header">
+                        <div class="filter-buttons">
+                            <button
+                                class="filter-btn completed"
+                                data-filter="completed"
+                                disabled
+                            >
+                                Completed
+                            </button>
+                            <button
+                                class="filter-btn pending"
+                                data-filter="pending"
+                                disabled
+                            >
+                                Pending
+                            </button>
+                            <button
+                                class="filter-btn sent"
+                                data-filter="sent"
+                                disabled
+                            >
+                                Current Date
+                            </button>
+                            <button
+                                class="filter-btn problem"
+                                data-filter="problem"
+                                disabled
+                            >
+                                Problem
+                            </button>
+                        </div>
+                        <button class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Delivery
+                        </button>
+                    </div>
+
+                    <!-- Calendar -->
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="calendar-nav" id="prevMonth">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <h3 id="currentMonth">February 2026</h3>
+                            <button class="calendar-nav" id="nextMonth">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- All Deliveries Table -->
+                    <div class="deliveries-grid">
+                        <div class="card">
+                            <h2>All Deliveries</h2>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Supplier</th>
+                                            <th>Date</th>
+                                            <th>Items</th>
+                                            <th>Status</th>
+                                            <th>Last Updated</th>
+                                            <!-- ✅ NEW COLUMN -->
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Deliveries will be added dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add/Edit Delivery Modal -->
+                    <div class="modal" id="deliveryModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Add New Delivery</h3>
+                                <button
+                                    class="modal-close"
+                                    id="closeDeliveryModal"
+                                >
+                                    &times;
+                                </button>
+                            </div>
+                            <form id="deliveryForm">
+                                <div class="form-group">
+                                    <label>Supplier Name</label>
+                                    <input
+                                        type="text"
+                                        name="supplier_name"
+                                        id="supplierName"
+                                        placeholder="Enter supplier name"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label>Delivery Date</label>
+                                    <input
+                                        type="date"
+                                        name="delivery_date"
+                                        id="deliveryDate"
+                                        required
+                                    />
+                                </div>
+
+                                <!-- Add Products Section -->
+                                <div class="form-group">
+                                    <label>Add Products</label>
+                                    <div class="product-add-section">
+                                        <div class="product-row">
+                                            <select
+                                                name="product_select"
+                                                id="productSelect"
+                                                class="product-select"
+                                            >
+                                                <option value="">
+                                                    Select Product
+                                                </option>
+                                            </select>
+                                            <input
+                                                type="number"
+                                                name="product_quantity"
+                                                id="productQuantity"
+                                                placeholder="Qty"
+                                                min="1"
+                                                class="product-quantity"
+                                            />
+                                            <select
+                                                name="product_unit"
+                                                id="productUnit"
+                                                class="product-unit"
+                                            >
+                                                <option value="PCS">PCS</option>
+                                            </select>
+                                            <button
+                                                type="button"
+                                                id="addProductBtn"
+                                                class="btn-add-product"
+                                            >
+                                                Add
+                                            </button>
+                                        </div>
+                                        <div
+                                            class="added-products"
+                                            id="addedProducts"
+                                        >
+                                            <!-- Added products will appear here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea
+                                        name="notes"
+                                        id="deliveryNotes"
+                                        placeholder="Enter delivery notes"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status" id="deliveryStatus">
+                                        <option value="Pending">Pending</option>
+                                        <!-- ✅ "Sent" option removed -->
+                                        <option value="Received">
+                                            Received
+                                        </option>
+                                        <option value="Problem">Problem</option>
+                                    </select>
+                                </div>
+                                <div class="action-buttons">
+                                    <button
+                                        type="button"
+                                        class="btn-danger"
+                                        id="cancelDeliveryBtn"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn-success">
+                                        Add Delivery
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
