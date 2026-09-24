@@ -7,7 +7,11 @@
 <img src="https://img.shields.io/badge/status-coursework-3fd6c9?style=for-the-badge&labelColor=1a1a1a" />
 <img src="https://img.shields.io/badge/course-IPT102-1a2440?style=for-the-badge" />
 
+<br />
+
 <img src="https://skillicons.dev/icons?i=html,css,js" />
+
+<br />
 
 <p>
   <a href="#features">Features</a> &middot;
